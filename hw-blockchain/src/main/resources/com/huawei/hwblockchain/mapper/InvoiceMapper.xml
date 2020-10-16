@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huawei.hwblockchain.mapper.InvoiceMapper">
+
+    <resultMap id="BaseResultMap" type="com.huawei.hwblockchain.entity.Invoice">
+        <id column="id" property="id"/>
+        <result column="purchaser_name" property="purchaserName"/>
+        <result column="seller_name" property="sellerName"/>
+        <result column="totalprice_tax" property="totalpriceTax"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select * from invoice where status = 1
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        select * from invoice where id = #{id}
+    </select>
+
+    <insert id="add" parameterType="com.huawei.hwblockchain.entity.Invoice">
+        insert into invoice values(#{id},#{purchaserName},#{sellerName},#{totalpriceTax},#{status})
+    </insert>
+</mapper>
